@@ -69,48 +69,33 @@ float linear_interpolation_coeff(float val, float prev, float next)
 }
 vec3 handle_color(float dt,particle_structure &p)
 {
-    float r = 255;
-    float g = 255;
-    float b = 255;
-    float a = 120;
+    float r = p.c.x;
+    float g = p.c.y;
+    float b = p.c.z;
     float alea = (((double) rand() / (RAND_MAX))) ;
-    float prev = 0.05f;
-    float next =  0.06+alea / 10;
-    auto temp = 0.9-dt;
-    if (temp >= prev)
+    auto temp = dt;
+    if(b <= 0.05)
     {
-        if (temp <= next)
+        if(g <= 0.05)
         {
-            b *= linear_interpolation_coeff(temp, prev, next) * 2;
-            a *= linear_interpolation_coeff(temp, prev, next);
-        } else
-        {
-            prev = next + alea;
-            next = 0.40 + alea;
-            b = 0;
-            if (temp <= next)
+            if(r <= 0.05)
             {
-                g *= linear_interpolation_coeff(temp, prev, next) * 2;
-                a *= linear_interpolation_coeff(temp, prev, next);
-            } else
-            {
-                prev = 0.65 + alea;
-                next = 0.79 + alea;
-                g = 0;
-                if (temp >= prev && temp <= next)
-                {
-                    r *= linear_interpolation_coeff(temp, prev, next) * 2;
-                    a *= linear_interpolation_coeff(temp, prev, next);
-                } else if (temp >= next)
-                {
-                    r = 0;
-                    a *= linear_interpolation_coeff(temp, prev, next);
-                }
+                return {r,g,b};
             }
+            else
+            {
+                r *= 0.85f;
+            }
+        }else
+        {
+            g *= 0.90;
         }
     }
-    p.a = a/255;
-    return vec3(r/255,g/255,b/255);
+    else
+    {
+        b *= 0.93;
+    }
+    return {r,g,b};
 }
 void simulate_fire(std::vector<particle_structure>& particles, float dt)
 {

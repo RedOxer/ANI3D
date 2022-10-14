@@ -23,11 +23,11 @@ void scene_structure::initialize()
 	//cube_wireframe.display_type = curve_drawable_display_type::Segments;
 
 	sphere.initialize_data_on_gpu(mesh_primitive_sphere());
+
     this->environment.background_color = {0.1,0.1,0.1};
 
 
 }
-
 
 
 void scene_structure::display_frame()
@@ -112,7 +112,7 @@ void scene_structure::emit_fire_particle()
 {
     // Emit particle with random velocity
     //  Assume first that all particles have the same radius and mass
-    for (int i = 0; i < 93; ++i)
+    for (int i = 0; i < gui.FireDensity; ++i)
     {
     if (gui.add_sphere)
     {
@@ -124,16 +124,16 @@ void scene_structure::emit_fire_particle()
 
         particle_structure particle;
         particle.p = { rng/2, rng_aux/2, 0};
-        particle.r = 0.008f;
-        particle.c = {0, 0, 0};
-        particle.v = {0,0,0.3};
+        particle.r = 0.05f;
+        particle.c = {1,1,1};
+        particle.v = {0,0,100};
 
         float spread = 0.3f;
         vec3 maindir = vec3(0.0f, 0, 1);
         vec3 randomdir = vec3((rand() % 2000 - 1000.0f) * 2 / 1000.0f, (rand() % 2000 - 1000.0f) * 2 / 1000.0f,1);
         particle.v = maindir + randomdir * spread;
         particle.m = 0.3f; //
-        particle.t = 0.9f;
+        particle.t = gui.FireLength;
 
         fire_particles.push_back(particle);
     }
@@ -143,10 +143,11 @@ void scene_structure::emit_fire_particle()
 
 void scene_structure::display_gui()
 {
-	ImGui::Checkbox("Frame", &gui.display_frame);
-	ImGui::SliderFloat("Time scale", &timer.scale, 0.05f, 2.0f, "%.2f s");
-	ImGui::SliderFloat("Time to add new sphere", &timer.event_period, 0.01f, 2.0f, "%.2f s");
-	ImGui::Checkbox("Add sphere", &gui.add_sphere);
+	ImGui::SliderFloat("Fire Intensity", &timer.scale, 0.05f, 2.0f, "%.2f %");
+    ImGui::SliderFloat("Fire Length", &gui.FireLength, 0.05f, 2.0f, "%.2f %");
+    ImGui::SliderInt("Fire Density", &gui.FireDensity, 10, 150, "%.2f %");
+
+    ImGui::Checkbox("Turn Fire On/Off", &gui.add_sphere);
 }
 
 void scene_structure::mouse_move_event()

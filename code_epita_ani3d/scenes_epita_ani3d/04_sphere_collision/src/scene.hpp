@@ -10,8 +10,10 @@ using cgp::mesh_drawable;
 
 
 struct gui_parameters {
-	bool display_frame = true;
+	bool display_frame = false;
 	bool add_sphere = true;
+    float FireLength = 0.9f;
+    int FireDensity = 50;
 };
 
 // The structure of the custom scene
