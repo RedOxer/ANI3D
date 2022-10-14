@@ -78,6 +78,7 @@ namespace cgp
         glfwWindowHint(GLFW_SAMPLES, 8); // Multisampling
         glfwWindowHint(GLFW_FLOATING, GLFW_FALSE); // Windows is not always on top
 
+
 #ifdef __APPLE__
         glfwWindowHint(GLFW_COCOA_RETINA_FRAMEBUFFER, GLFW_FALSE); // To avoid HiDPI issues with pixel size on Mac
 #endif 

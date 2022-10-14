@@ -19,10 +19,11 @@ void scene_structure::initialize()
 	numarray<vec3> border_cube = { {-1,-1,-1},{1,-1,-1}, {1,-1,-1},{1,1,-1}, {1,1,-1},{-1,1,-1}, {-1,1,-1},{-1,-1,-1},
 		{-1,-1,1} ,{1,-1,1},  {1,-1,1}, {1,1,1},  {1,1,1}, {-1,1,1},  {-1,1,1}, {-1,-1,1},
 		{-1,-1,-1},{-1,-1,1}, {1,-1,-1},{1,-1,1}, {1,1,-1},{1,1,1},   {-1,1,-1},{-1,1,1} };
-	cube_wireframe.initialize_data_on_gpu(border_cube);
-	cube_wireframe.display_type = curve_drawable_display_type::Segments;
+	//cube_wireframe.initialize_data_on_gpu(border_cube);
+	//cube_wireframe.display_type = curve_drawable_display_type::Segments;
 
 	sphere.initialize_data_on_gpu(mesh_primitive_sphere());
+    this->environment.background_color = {0.1,0.1,0.1};
 
 
 }
@@ -41,11 +42,13 @@ void scene_structure::display_frame()
 	timer.update();
 
 	// Create a new particle if needed
-	emit_particle();
+	// emit_particle();
+    emit_fire_particle();
 
 	// Call the simulation of the particle system
 	float const dt = 0.01f * timer.scale;
-	simulate(particles, dt, rotation);
+	// simulate(particles, dt, rotation);
+    simulate_fire(fire_particles,dt);
 
 	// Display the result
 	sphere_display();
@@ -57,7 +60,7 @@ void scene_structure::display_frame()
 void scene_structure::sphere_display()
 {
 	// Display the particles as spheres
-	size_t const N = particles.size();
+	size_t N = particles.size();
 	for (size_t k = 0; k < N; ++k)
 	{
 		particle_structure const& particle = particles[k];
@@ -70,6 +73,18 @@ void scene_structure::sphere_display()
 
 	// Display the box in which the particles should stay
 	draw(cube_wireframe, environment);
+    // Display the particles as spheres
+    N = fire_particles.size();
+    for (size_t k = 0; k < N; ++k)
+    {
+        particle_structure const& particle = fire_particles[k];
+        sphere.material.color = particle.c;
+        sphere.material.alpha= 0.01;
+        sphere.model.translation = particle.p;
+        sphere.model.scaling = particle.r;
+
+        draw(sphere, environment);
+    }
 }
 
 void scene_structure::emit_particle()
@@ -87,9 +102,42 @@ void scene_structure::emit_particle()
 		particle.c = color_lut[int(rand_interval() * color_lut.size())];
 		particle.v = v;
 		particle.m = 1.0f; //
+        particle.t = 1.0f;
 
 		particles.push_back(particle);
 	}
+}
+
+void scene_structure::emit_fire_particle()
+{
+    // Emit particle with random velocity
+    //  Assume first that all particles have the same radius and mass
+    for (int i = 0; i < 93; ++i)
+    {
+    if (gui.add_sphere)
+    {
+        /* generate secret number between 1 and 10: */
+        float const rng =  ((double) rand() / (RAND_MAX));
+        float const rng_aux =  ((double) rand() / (RAND_MAX));
+
+        vec3 const v = vec3(1.0f * std::cos(rng), 1.0f * std::sin(rng), 4.0f);
+
+        particle_structure particle;
+        particle.p = { rng/2, rng_aux/2, 0};
+        particle.r = 0.008f;
+        particle.c = {0, 0, 0};
+        particle.v = {0,0,0.3};
+
+        float spread = 0.3f;
+        vec3 maindir = vec3(0.0f, 0, 1);
+        vec3 randomdir = vec3((rand() % 2000 - 1000.0f) * 2 / 1000.0f, (rand() % 2000 - 1000.0f) * 2 / 1000.0f,1);
+        particle.v = maindir + randomdir * spread;
+        particle.m = 0.3f; //
+        particle.t = 0.9f;
+
+        fire_particles.push_back(particle);
+    }
+}
 }
 
 
@@ -103,7 +151,8 @@ void scene_structure::display_gui()
 
 void scene_structure::mouse_move_event()
 {
-
+    if (!inputs.keyboard.shift)
+        camera_control.action_mouse_move(environment.camera_view);
 }
 void scene_structure::mouse_click_event()
 {

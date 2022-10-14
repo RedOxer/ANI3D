@@ -63,3 +63,75 @@ void simulate(std::vector<particle_structure>& particles, float dt, rotation_tra
         }
     }
 }
+float linear_interpolation_coeff(float val, float prev, float next)
+{
+    return (next - prev) / (val - prev);
+}
+vec3 handle_color(float dt,particle_structure &p)
+{
+    float r = 255;
+    float g = 255;
+    float b = 255;
+    float a = 120;
+    float alea = (((double) rand() / (RAND_MAX))) ;
+    float prev = 0.05f;
+    float next =  0.06+alea / 10;
+    auto temp = 0.9-dt;
+    if (temp >= prev)
+    {
+        if (temp <= next)
+        {
+            b *= linear_interpolation_coeff(temp, prev, next) * 2;
+            a *= linear_interpolation_coeff(temp, prev, next);
+        } else
+        {
+            prev = next + alea;
+            next = 0.40 + alea;
+            b = 0;
+            if (temp <= next)
+            {
+                g *= linear_interpolation_coeff(temp, prev, next) * 2;
+                a *= linear_interpolation_coeff(temp, prev, next);
+            } else
+            {
+                prev = 0.65 + alea;
+                next = 0.79 + alea;
+                g = 0;
+                if (temp >= prev && temp <= next)
+                {
+                    r *= linear_interpolation_coeff(temp, prev, next) * 2;
+                    a *= linear_interpolation_coeff(temp, prev, next);
+                } else if (temp >= next)
+                {
+                    r = 0;
+                    a *= linear_interpolation_coeff(temp, prev, next);
+                }
+            }
+        }
+    }
+    p.a = a/255;
+    return vec3(r/255,g/255,b/255);
+}
+void simulate_fire(std::vector<particle_structure>& particles, float dt)
+{
+    vec3 const g = { 0,0,9.81f };
+    size_t const N = particles.size();
+    for (size_t k = 0; k < N; ++k)
+    {
+        particle_structure& particle = particles[k];
+        vec3 const f = particle.m * g;
+        //Inital Position and Speed Update
+        particle.v = (1 - 0.9f * dt) * particle.v + dt * f;
+        particle.p = particle.p + dt * particle.v;
+        //Add Perturbation to enhance realism
+        particle.v += vec3(0.0f, 0, 5 * ((double) rand() / RAND_MAX)) * (float) dt * 0.5f;
+        particle.p += (particle.v * vec3(0.8, 0.8, 0.4 + ((double) rand() / RAND_MAX))) * (float) dt;
+        particle.a = 0;
+        particle.t -= dt;
+        particle.c = handle_color(particle.t,particle);
+        if(particle.t <= 0)
+        {
+            particles.erase(particles.begin()+k);
+        }
+    }
+}

@@ -24,6 +24,7 @@ void initialize_default_shaders();
 
 int main(int, char* argv[])
 {
+    srand(time(NULL));
 	std::cout << "Run " << argv[0] << std::endl;
 
 	// ************************ //

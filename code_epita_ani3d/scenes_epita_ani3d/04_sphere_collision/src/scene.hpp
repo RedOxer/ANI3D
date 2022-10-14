@@ -34,7 +34,8 @@ struct scene_structure : scene_inputs_generic {
 	// ****************************** //
 	cgp::timer_event_periodic timer;
 	std::vector<particle_structure> particles;
-	cgp::mesh_drawable sphere;
+    std::vector<particle_structure> fire_particles;
+    cgp::mesh_drawable sphere;
 	cgp::curve_drawable cube_wireframe;
 
 
@@ -56,6 +57,8 @@ struct scene_structure : scene_inputs_generic {
 	void emit_particle();
 	void simulation_step(float dt);
 	void sphere_display();
+
+    void emit_fire_particle();
 };
 
 

@@ -1,4 +1,4 @@
-# Install script for directory: /home/nz/ANI/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision
+# Install script for directory: /home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/nz/ANI/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
