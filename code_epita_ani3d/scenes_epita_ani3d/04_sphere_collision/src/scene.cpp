@@ -23,13 +23,82 @@ void scene_structure::initialize()
 	//cube_wireframe.display_type = curve_drawable_display_type::Segments;
 
 	sphere.initialize_data_on_gpu(mesh_primitive_sphere());
+    plane.initialize_data_on_gpu(mesh_primitive_quadrangle());
+    plane.model.scaling = 100;
+    plane.model.translation = {-50,-50,-1};
+
+    bolder.initialize_data_on_gpu(mesh_primitive_sphere());
 
     this->environment.background_color = {0.1,0.1,0.1};
 
+    mesh catapult_mesh = mesh_load_file_obj("/home/nz/Downloads/catapult.obj");
 
+    catapult.initialize_data_on_gpu(catapult_mesh);
+    catapult.model.scaling = 1.5f;
+    catapult.material.color = {0.38, 0.22, 0.01};
+    catapult.model.rotation = rotation_transform::from_axis_angle({1,0,0}, M_PI/2);
+    catapult.model.translation = { 0.4,0.4,-0.2 };
+
+    mesh catapult_arm_mesh = mesh_load_file_obj("/home/nz/Downloads/bras.obj");
+
+    catapult_arm.initialize_data_on_gpu(catapult_arm_mesh);
+    catapult_arm.model.scaling = 1.5f;
+    catapult_arm.material.color = {0.38, 0.22, 0.01};
+    catapult_arm.model.rotation = rotation_transform::from_axis_angle({1,0,0}, M_PI/2);
+    catapult_arm.model.translation = { 0.4,0.4,-0.2 };
+
+    hierarchy.add(catapult, "catapult", {});
+    hierarchy.add(catapult_arm, "catapult_arm", "catapult",{-0.5,3.7,0.1});
 }
+void scene_structure::Catapult()
+{
+    angler += 0.05 * neg;
+    if(angler > M_PI/8 || angler < -1 * M_PI/7)
+    {
+        count++;
+        neg *= -1;
+    }
+    if(count > 1) {
+        if (offset == 0)
+            offset = timer.t;
+        gui.Launch = false;
+        arrow = true;
+        count = 0;
+    }
+    hierarchy["catapult_arm"].transform_local.rotation = rotation_transform::from_axis_angle({1,0,0}, angler);
+    bolder.material.color = {1,1,1};
+    bolder.model.scaling = 0.4;
 
-
+    draw(bolder,environment);
+    if(bolder.model.translation.z <=0)
+    {
+        emit_fire_particle(bolder.model.translation.x,bolder.model.translation.y,0);
+    }
+}
+void scene_structure::burn_fire()
+{
+    if(timer.t < fixe)
+    {
+        emit_fire_particle(impact_x,impact_y,-1);
+    }
+}
+void scene_structure::simulate_arrow()
+{
+    bolder.model.translation.y -= (timer.t - offset) * 15;
+    auto y = bolder.model.translation.y;
+    bolder.model.translation.z = -0.02 *y*y + 4;
+    draw(bolder,environment);
+    emit_fire_particle(bolder.model.translation.x,bolder.model.translation.y,bolder.model.translation.z);
+    if(bolder.model.translation.z <= -1)
+    {
+        arrow = false;
+        offset = 0;
+        impact_x = bolder.model.translation.x;
+        impact_y = bolder.model.translation.y;
+        bolder.model.translation = {0,7,2};
+        fixe = timer.t +5;
+    }
+}
 void scene_structure::display_frame()
 {
 	// Set the light to the current position of the camera
@@ -43,18 +112,34 @@ void scene_structure::display_frame()
 
 	// Create a new particle if needed
 	// emit_particle();
-    emit_fire_particle();
-
 	// Call the simulation of the particle system
 	float const dt = 0.01f * timer.scale;
 	// simulate(particles, dt, rotation);
     simulate_fire(fire_particles,dt);
+    std::tuple<float,float> res;
+    if(arrow)
+        simulate_arrow();
+
+    draw(plane,environment);
+    draw(catapult,environment);
 
 	// Display the result
 	sphere_display();
+    bolder.model.translation = {0,7,2};
 
 	if (gui.display_frame)
 		draw(global_frame, environment);
+
+    if(gui.Launch)
+    {
+        Catapult();
+    }
+    else {
+        hierarchy["catapult_arm"].transform_local.rotation = rotation_transform::from_axis_angle({1, 0, 0}, 0);
+    }
+    burn_fire();
+    hierarchy.update_local_to_global_coordinates();
+    draw(hierarchy,environment);
 }
 
 void scene_structure::sphere_display()
@@ -108,7 +193,7 @@ void scene_structure::emit_particle()
 	}
 }
 
-void scene_structure::emit_fire_particle()
+void scene_structure::emit_fire_particle(float x, float y, float z)
 {
     // Emit particle with random velocity
     //  Assume first that all particles have the same radius and mass
@@ -123,7 +208,7 @@ void scene_structure::emit_fire_particle()
         vec3 const v = vec3(1.0f * std::cos(rng), 1.0f * std::sin(rng), 4.0f);
 
         particle_structure particle;
-        particle.p = { rng/2, rng_aux/2, 0};
+        particle.p = { x+rng/2, y+rng_aux/2, z};
         particle.r = 0.05f;
         particle.c = {1,1,1};
         particle.v = {0,0,100};
@@ -148,6 +233,9 @@ void scene_structure::display_gui()
     ImGui::SliderInt("Fire Density", &gui.FireDensity, 10, 150, "%.2f %");
 
     ImGui::Checkbox("Turn Fire On/Off", &gui.add_sphere);
+    ImGui::Checkbox("Launch Bomb", &gui.Launch);
+
+
 }
 
 void scene_structure::mouse_move_event()

@@ -63,10 +63,6 @@ void simulate(std::vector<particle_structure>& particles, float dt, rotation_tra
         }
     }
 }
-float linear_interpolation_coeff(float val, float prev, float next)
-{
-    return (next - prev) / (val - prev);
-}
 vec3 handle_color(float dt,particle_structure &p)
 {
     float r = p.c.x;

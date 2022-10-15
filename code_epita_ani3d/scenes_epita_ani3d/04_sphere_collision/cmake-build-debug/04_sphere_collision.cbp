@@ -5,16 +5,16 @@
 		<Option title="04_sphere_collision"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\cgp\;CMake Files\..\..\cgp\library\;CMake Files\..\..\cgp\library\third_party\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\..\usr\lib\;CMake Files\..\..\..\..\..\..\usr\lib\x86_64-linux-gnu\;CMake Files\..\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\;CMake Files\..\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\glfw3\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\cgp\;CMake Files\..\..\cgp\library\;CMake Files\..\..\cgp\library\third_party\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\..\usr\lib64\;CMake Files\..\..\..\..\..\..\usr\lib64\cmake\;CMake Files\..\..\..\..\..\..\usr\lib64\cmake\glfw3\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="04_sphere_collision">
@@ -25,23 +25,21 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add option="-DIMGUI_IMPL_OPENGL_LOADER_GLAD"/>
-					<Add option="-DGLFW_DLL"/>
 					<Add directory="/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/src"/>
 					<Add directory="/home/nz/ANI3D/code_epita_ani3d/cgp/library"/>
-					<Add directory="/usr/include/c++/7"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
-					<Add directory="/usr/include/c++/7/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/../../../../include/c++/11.2.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/../../../../include/c++/11.2.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/../../../../include/c++/11.2.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include-fixed"/>
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 04_sphere_collision"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 04_sphere_collision"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="04_sphere_collision/fast">
@@ -52,43 +50,41 @@
 				<Option compiler="gcc"/>
 				<Compiler>
 					<Add option="-DIMGUI_IMPL_OPENGL_LOADER_GLAD"/>
-					<Add option="-DGLFW_DLL"/>
 					<Add directory="/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/src"/>
 					<Add directory="/home/nz/ANI3D/code_epita_ani3d/cgp/library"/>
-					<Add directory="/usr/include/c++/7"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
-					<Add directory="/usr/include/c++/7/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/../../../../include/c++/11.2.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/../../../../include/c++/11.2.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/../../../../include/c++/11.2.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include-fixed"/>
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 04_sphere_collision/fast"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 04_sphere_collision/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
 				<Option working_dir="/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
 				<Option working_dir="/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
@@ -812,17 +808,17 @@
 		<Unit filename="/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/../../cgp/library/third_party/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\..\..\cgp\library\third_party\"/>
 		</Unit>
-		<Unit filename="/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/../../../../../../usr/lib/x86_64-linux-gnu/cmake/glfw3/glfw3Config.cmake">
-			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\glfw3\"/>
+		<Unit filename="/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/../../../../../../usr/lib64/cmake/glfw3/glfw3Config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\lib64\cmake\glfw3\"/>
 		</Unit>
-		<Unit filename="/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/../../../../../../usr/lib/x86_64-linux-gnu/cmake/glfw3/glfw3ConfigVersion.cmake">
-			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\glfw3\"/>
+		<Unit filename="/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/../../../../../../usr/lib64/cmake/glfw3/glfw3ConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\lib64\cmake\glfw3\"/>
 		</Unit>
-		<Unit filename="/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/../../../../../../usr/lib/x86_64-linux-gnu/cmake/glfw3/glfw3Targets-none.cmake">
-			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\glfw3\"/>
+		<Unit filename="/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/../../../../../../usr/lib64/cmake/glfw3/glfw3Targets-noconfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\lib64\cmake\glfw3\"/>
 		</Unit>
-		<Unit filename="/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/../../../../../../usr/lib/x86_64-linux-gnu/cmake/glfw3/glfw3Targets.cmake">
-			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\glfw3\"/>
+		<Unit filename="/home/nz/ANI3D/code_epita_ani3d/scenes_epita_ani3d/04_sphere_collision/../../../../../../usr/lib64/cmake/glfw3/glfw3Targets.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\usr\lib64\cmake\glfw3\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>
