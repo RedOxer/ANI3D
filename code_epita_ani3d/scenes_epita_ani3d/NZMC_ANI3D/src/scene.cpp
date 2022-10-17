@@ -14,14 +14,6 @@ void scene_structure::initialize()
 	global_frame.initialize_data_on_gpu(mesh_primitive_frame());
 	timer.event_period = 0.5f;
 
-	// Edges of the containing cube in [-1,1]^3
-	//  Note: this data structure is set for display purpose - don't use it to compute some information on the cube - it would be un-necessarily complex
-	numarray<vec3> border_cube = { {-1,-1,-1},{1,-1,-1}, {1,-1,-1},{1,1,-1}, {1,1,-1},{-1,1,-1}, {-1,1,-1},{-1,-1,-1},
-		{-1,-1,1} ,{1,-1,1},  {1,-1,1}, {1,1,1},  {1,1,1}, {-1,1,1},  {-1,1,1}, {-1,-1,1},
-		{-1,-1,-1},{-1,-1,1}, {1,-1,-1},{1,-1,1}, {1,1,-1},{1,1,1},   {-1,1,-1},{-1,1,1} };
-	//cube_wireframe.initialize_data_on_gpu(border_cube);
-	//cube_wireframe.display_type = curve_drawable_display_type::Segments;
-
 	sphere.initialize_data_on_gpu(mesh_primitive_sphere());
     plane.initialize_data_on_gpu(mesh_primitive_quadrangle());
     plane.model.scaling = 100;
@@ -89,7 +81,7 @@ void scene_structure::simulate_arrow()
 {
     bolder.model.translation.y -= (timer.t - offset) * 15;
     auto y = bolder.model.translation.y;
-    bolder.model.translation.z = -0.02 *y*y + 4;
+    bolder.model.translation.z = -0.04*y*y + 4;
     draw(bolder,environment);
     emit_fire_particle(bolder.model.translation.x,bolder.model.translation.y,bolder.model.translation.z);
     if(bolder.model.translation.z <= -1)
@@ -107,8 +99,7 @@ void scene_structure::display_frame()
 	// Set the light to the current position of the camera
 	environment.light = camera_control.camera_model.position();
 	
-	if (gui.display_frame)
-		draw(global_frame, environment);
+
     auto rotation = rotation_transform::from_axis_angle({0,1,0}, M_PI/2 * timer.t );
     cube_wireframe.model.rotation = rotation;
 	timer.update();
@@ -152,22 +143,7 @@ void scene_structure::display_frame()
 
 void scene_structure::sphere_display()
 {
-	// Display the particles as spheres
-	size_t N = particles.size();
-	for (size_t k = 0; k < N; ++k)
-	{
-		particle_structure const& particle = particles[k];
-		sphere.material.color = particle.c;
-		sphere.model.translation = particle.p;
-		sphere.model.scaling = particle.r;
-
-		draw(sphere, environment);
-	}
-
-	// Display the box in which the particles should stay
-	draw(cube_wireframe, environment);
-    // Display the particles as spheres
-    N = fire_particles.size();
+    size_t N = fire_particles.size();
     for (size_t k = 0; k < N; ++k)
     {
         particle_structure const& particle = fire_particles[k];
@@ -178,27 +154,6 @@ void scene_structure::sphere_display()
 
         draw(sphere, environment);
     }
-}
-
-void scene_structure::emit_particle()
-{
-	// Emit particle with random velocity
-	//  Assume first that all particles have the same radius and mass
-	static numarray<vec3> const color_lut = { {1,0,0},{0,1,0},{0,0,1},{1,1,0},{1,0,1},{0,1,1} };
-	if (timer.event && gui.add_sphere) {
-		float const theta = rand_interval(0, 2 * Pi);
-		vec3 const v = vec3(1.0f * std::cos(theta), 1.0f * std::sin(theta), 4.0f);
-
-		particle_structure particle;
-		particle.p = { 0,0,0 };
-		particle.r = 0.1f;
-		particle.c = color_lut[int(rand_interval() * color_lut.size())];
-		particle.v = v;
-		particle.m = 1.0f; //
-        particle.t = 1.0f;
-
-		particles.push_back(particle);
-	}
 }
 
 void scene_structure::emit_fire_particle(float x, float y, float z)
@@ -236,7 +191,6 @@ void scene_structure::emit_fire_particle(float x, float y, float z)
 
 void scene_structure::display_gui()
 {
-	ImGui::SliderFloat("Fire Intensity", &timer.scale, 0.05f, 2.0f, "%.2f %");
     ImGui::SliderFloat("Fire Length", &gui.FireLength, 0.05f, 2.0f, "%.2f %");
     ImGui::SliderInt("Fire Density", &gui.FireDensity, 10, 150, "%.2f %");
 

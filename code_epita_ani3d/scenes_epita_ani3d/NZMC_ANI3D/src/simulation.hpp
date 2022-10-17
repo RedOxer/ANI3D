@@ -15,7 +15,7 @@ struct particle_structure
     float t;     // Time Span
 };
 
-void simulate(std::vector<particle_structure>& particles, float dt, cgp::rotation_transform rotation);
+float model_trajectory(float v0,float theta, float x);
 void simulate_fire(std::vector<particle_structure>& particles, float dt);
 
 

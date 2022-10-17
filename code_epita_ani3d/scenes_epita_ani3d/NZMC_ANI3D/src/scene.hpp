@@ -15,6 +15,8 @@ struct gui_parameters {
     float FireLength = 0.9f;
     int FireDensity = 50;
     bool Launch = false;
+    float x_v0 = 0;
+    float x_angle = 0;
 };
 
 // The structure of the custom scene
