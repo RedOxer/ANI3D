@@ -1,0 +1,3 @@
+/home/nz/ANI3D/code_epita_ani3d/NZMC_ANI3DPROJECT/NZMC_ANI3D/build/CMakeFiles/NZMC_ANI3D.dir
+/home/nz/ANI3D/code_epita_ani3d/NZMC_ANI3DPROJECT/NZMC_ANI3D/build/CMakeFiles/edit_cache.dir
+/home/nz/ANI3D/code_epita_ani3d/NZMC_ANI3DPROJECT/NZMC_ANI3D/build/CMakeFiles/rebuild_cache.dir
